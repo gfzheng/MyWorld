@@ -78,7 +78,7 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 //	}
 	
 	public ArrayList<HashMap<String, String>> queryData(Calendar date) {
-		String dateString = (date.get(Calendar.YEAR) + 1900) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
+		String dateString = (date.get(Calendar.YEAR)) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
 		SQLiteDatabase db = getReadableDatabase();
 		Cursor cursor = db.query("schedule", null, "date=?", new String[]{dateString}, null, null, "time asc");
 		int titleIndex = cursor.getColumnIndex("title");
@@ -103,7 +103,7 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 	}
 	
 	public void deleteData(Calendar date) {
-		String dateString = (date.get(Calendar.YEAR) + 1900) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
+		String dateString = (date.get(Calendar.YEAR)) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
 		String timeString;
 		if(date.get(Calendar.MINUTE) >= 10 && date.get(Calendar.HOUR) < 10)
 			timeString = "0" + date.get(Calendar.HOUR) + ":" + date.get(Calendar.MINUTE);
@@ -121,7 +121,7 @@ public class MySqliteHelper extends SQLiteOpenHelper{
 	}
 	
 	public void updateData(String title, String content, Calendar date) {
-		String dateString = (date.get(Calendar.YEAR) + 1900) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
+		String dateString = (date.get(Calendar.YEAR)) + "-" + (date.get(Calendar.MONTH) + 1) + "-" + date.get(Calendar.DAY_OF_MONTH);
 		String timeString;
 		if(date.get(Calendar.MINUTE) >= 10 && date.get(Calendar.HOUR) < 10)
 			timeString = "0" + date.get(Calendar.HOUR) + ":" + date.get(Calendar.MINUTE);
